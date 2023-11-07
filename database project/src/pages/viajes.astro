@@ -1,22 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Botones from '../components/Botones_viajes.astro';
+
+// Simulación de datos recuperados de una base de datos
+let viajes = [
+    { id: 1, destino: 'Paris', fecha: '2022-01-01' },
+    { id: 2, destino: 'Londres', fecha: '2022-02-01' },
+    { id: 3, destino: 'Madrid', fecha: '2022-03-01' },
+];
 
 ---
 
-
 <Layout title="Pagina principal">
-
     <html>
         <head>
-            <title style="color: whitesmoke;">Home</title>
-            <h1 style="color: whitesmoke;">
-                Menu de viajes
-            </h1>
+            <title>Página con Sidebar</title>
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
         </head>
-    </html>
-
-
-
-
+        <body class="bg-gray-100">
+            <div class="flex flex-col">
+                <!-- Sidebar -->
+                <Sidebar />
+                <!-- Contenido principal -->
+                <main class="w-full p-4">
+                    <Botones />
+                    <div>
+                        {viajes.map(viaje => (
+                            <div key={viaje.id}>
+                                <h3>{viaje.destino}</h3>
+                                <p>{viaje.fecha}</p>
+                            </div>
+                        ))}
+                    </div>
+                </main>
+            </div>
+        </body>
+        </html>
 </Layout>
