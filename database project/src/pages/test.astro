@@ -2,10 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Sidebar from '../components/Sidebar.astro';
-import TablaEmpleados from '../components/TablaEmpleados';
-import TablaViaje from '../components/TablaViajes';
+import ListaViajes from '../components/ListaViajes';
 
-import BotonAgregarEmpleado from '../components/BotonAgregarEmpleado';
+import { Button } from '@nextui-org/react';
 
 ---
 
@@ -21,10 +20,9 @@ import BotonAgregarEmpleado from '../components/BotonAgregarEmpleado';
                 <Sidebar />
                 <!-- Contenido principal -->
                 <main class="w-full p-4">
-                    <h1 class="text-2xl font-semibold">Esta es la pestania Empleados maje</h1>
-                    <TablaEmpleados client:visible></TablaEmpleados>
+                    <ListaViajes client:visible>
+                </main>
             </div>
-            <BotonAgregarEmpleado client:visible></BotonAgregarEmpleado>
         </body>
         </html>
 </Layout>

@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Botones from '../components/Botones_viajes.astro';
-
+import ListaViajes from '../components/ListaViajes.jsx';
+import TablaViajes from '../components/TablaViajes.jsx';
 // Simulación de datos recuperados de una base de datos
 let viajes = [
     { id: 1, destino: 'Paris', fecha: '2022-01-01' },
@@ -27,12 +28,7 @@ let viajes = [
                 <main class="w-full p-4">
                     <Botones />
                     <div>
-                        {viajes.map(viaje => (
-                            <div key={viaje.id}>
-                                <h3>{viaje.destino}</h3>
-                                <p>{viaje.fecha}</p>
-                            </div>
-                        ))}
+                        <TablaViajes client:visible></TablaViajes>
                     </div>
                 </main>
             </div>
