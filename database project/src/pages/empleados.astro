@@ -2,10 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Sidebar from '../components/Sidebar.astro';
-import TablaEmpleados from '../components/TablaEmpleados';
-import TablaViaje from '../components/TablaViajes';
+import TablaEmpleados from '../components/empleados/TablaEmpleados';
 
-import BotonAgregarEmpleado from '../components/BotonAgregarEmpleado';
+import ModalAgregarEmpleado from '../components/empleados/ModalAgregarEmpleado';
+import ModalModificarEmpleado from '../components/empleados/ModalModificarEmpleado';
+import ModalEliminarEmpleado from '../components/empleados/ModalEliminarEmpleado';
 
 ---
 
@@ -24,7 +25,13 @@ import BotonAgregarEmpleado from '../components/BotonAgregarEmpleado';
                     <h1 class="text-2xl font-semibold">Esta es la pestania Empleados maje</h1>
                     <TablaEmpleados client:visible></TablaEmpleados>
             </div>
-            <BotonAgregarEmpleado client:visible></BotonAgregarEmpleado>
+            <div class = "flex gap-4">
+                <ModalAgregarEmpleado client:visible></ModalAgregarEmpleado>
+                <ModalModificarEmpleado client:visible></ModalModificarEmpleado>
+                <ModalEliminarEmpleado client:visible></ModalEliminarEmpleado>
+            </div>
+            
         </body>
+
         </html>
 </Layout>

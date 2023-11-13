@@ -2,10 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Sidebar from '../components/Sidebar.astro';
-import ListaViajes from '../components/ListaViajes';
 import React from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 
+import TablaVehiculos from '../components/vehiculos/TablaVehiculos';
+import ModalAgregarVehiculo from '../components/vehiculos/ModalAgregarVehiculo';
 ---
 
 <Layout title="Pagina principal">
@@ -19,11 +20,15 @@ import { NextUIProvider } from '@nextui-org/react';
                 <!-- Sidebar -->
                 <Sidebar />
                 <!-- Contenido principal -->
-                <main class="w-full p-4">
-                    <ListaViajes client:visible></ListaViajes>
-                    
+                <main class="w-full p-4">   
+                    <TablaVehiculos client:visible/>        
                 </main>
             </div>
+
+            <div class = "flex gap-4">
+                <ModalAgregarVehiculo client:visible/>
+            </div>
+
         </body>
         </html>
 </Layout>
