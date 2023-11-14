@@ -9,6 +9,8 @@ export default function App() {
   const [primerApellido, setPrimerApellido] = React.useState("");
   const [segundoApellido, setSegundoApellido] = React.useState("");
   const [fechaNacimiento, setFechaNacimiento] = React.useState("");
+  const [correo, setCorreo] = React.useState("");
+  const [telefono, setTelefono] = React.useState("");
 
   const agregarEmpleado = async() => {
     try {
@@ -25,6 +27,8 @@ export default function App() {
               apellido1: primerApellido,
               apellido2: segundoApellido,
               fechaNacimiento,
+              correo,
+              telefono,
             },
           ],
         }),
@@ -60,7 +64,7 @@ export default function App() {
               <ModalBody>
                 <Input
                   label="Cedula"
-                  placeholder="Ej: 208420162 o 2-0842-0162"
+                  placeholder="Ej: 2-0842-0162"
                   variant="bordered"
                   value={cedula}
                   onValueChange={setCedula}
@@ -93,6 +97,21 @@ export default function App() {
                   value={fechaNacimiento}
                   onValueChange={setFechaNacimiento}
                 />
+                <Input
+                  label="Correo"
+                  placeholder="Ej: correo@hotmail.com"
+                  variant="bordered"
+                  value={correo}
+                  onValueChange={setCorreo}
+                />
+                <Input
+                  label="Telefono"
+                  placeholder="Ej: 2460-5896"
+                  variant="bordered"
+                  value={telefono}
+                  onValueChange={setTelefono}
+                />
+                
                 <div className="flex py-2 px-1 justify-between">
                 </div>
               </ModalBody>

@@ -4,6 +4,8 @@ import Card from '../components/Card.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Botones from '../components/Botones_viajes.astro';
 
+import TablaViajes from '../components/viajes/TablaViajes';
+import ModalAgregarViaje from '../components/viajes/ModalAgregarViaje';
 
 
 // Simulación de datos recuperados de una base de datos
@@ -27,10 +29,14 @@ let viajes = [
                 <Sidebar />
                 <!-- Contenido principal -->
                 <main class="w-full p-4">
-                    <Botones />
-                    <div>
-                        
+                    <main class="w-full p-4">
+                        <h1 class="text-4xl mb-7 font-bold ">Lista de viajes</h1>   
+                        <TablaViajes client:visible/>        
+                    </main>
+                    <div class = "flex gap-4">
+                        <ModalAgregarViaje client:visible></ModalAgregarViaje>
                     </div>
+                    
                 </main>
             </div>
         </body>

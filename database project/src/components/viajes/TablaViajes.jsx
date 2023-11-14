@@ -3,24 +3,28 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKey
 
 
 
-export default function TablaEmpleados() {
-  const [empleados, setEmpleados] = useState([]);
+export default function TablaViajes() {
+  const [viajes, setViajes] = useState([]);
 
   useEffect(() => {
     // Realiza la solicitud al servidor para obtener datos de la base de datos
-    fetch("http://localhost:5000/empleados")
+    fetch("http://localhost:5000/viajes")
       .then((response) => response.json())
-      .then((data) => setEmpleados(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
+      .then((data) => setViajes(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
   }, []); // El segundo argumento [] asegura que el efecto se ejecute solo una vez, equivalente a componentDidMount en clases.
 
   const columns = [
-    { key: "cedula", label: "Cedula" },
-    { key: "nombre", label: "Nombre" },
-    { key: "apellido1", label: "Primer apellido" },
-    { key: "apellido2", label: "Segundo apellido" },
-    { key: "fechaNacimiento", label: "Fecha de nacimiento" },
-    { key: "correo", label: "Correo" },
-    { key: "telefono", label: "Telefono" },
+    { key: "cedulaConductor", label: "Cedula del conductor" },
+    { key: "placa", label: "Placa" },
+    { key: "nombreCliente", label: "Nombre del cliente" },
+    { key: "fecha", label: "Fecha"},
+    { key: "hora", label: "Hora" },
+    { key: "cantidadPasajeros", label: "Cantidad de pasajeros" },
+    { key: "lugarSalida", label: "Lugar de Salida" },
+    { key: "lugarLlegada", label: "Lugar de Llegada" },
+    { key: "descripcion", label: "Descripcion" },
+    { key: "precio", label: "Precio" },
+    { key: "estado", label: "Estado" },
   ];
 
 
@@ -28,14 +32,14 @@ export default function TablaEmpleados() {
     <Table
       aria-label="Example table with dynamic content"
       selectionMode="single"
-      color={"primary"}
+      color={"success"}
     >
       <TableHeader columns={columns}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
-      <TableBody items={empleados}>
+      <TableBody items={viajes}>
         {(item) => (
-          <TableRow key={item.cedula}>
+          <TableRow key={item.idViaje}>
             {(columnKey) => (
               <TableCell>{getKeyValue(item, columnKey)}</TableCell>
             )}

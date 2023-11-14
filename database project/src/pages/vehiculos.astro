@@ -7,6 +7,8 @@ import { NextUIProvider } from '@nextui-org/react';
 
 import TablaVehiculos from '../components/vehiculos/TablaVehiculos';
 import ModalAgregarVehiculo from '../components/vehiculos/ModalAgregarVehiculo';
+import ModalModificarVehiculo from '../components/vehiculos/ModalModificarVehiculo';
+import ModalEliminarVehiculo from '../components/vehiculos/ModalEliminarVehiculo';
 ---
 
 <Layout title="Pagina principal">
@@ -20,15 +22,19 @@ import ModalAgregarVehiculo from '../components/vehiculos/ModalAgregarVehiculo';
                 <!-- Sidebar -->
                 <Sidebar />
                 <!-- Contenido principal -->
-                <main class="w-full p-4">   
+                
+                <main class="w-full p-4">
+                    <h1 class="text-4xl mb-7 font-bold ">Lista de vehiculos</h1>   
                     <TablaVehiculos client:visible/>        
                 </main>
             </div>
 
             <div class = "flex gap-4">
-                <ModalAgregarVehiculo client:visible/>
+                <ModalAgregarVehiculo client:visible></ModalAgregarVehiculo>
+                <ModalModificarVehiculo client:visible></ModalModificarVehiculo>
+                <ModalEliminarVehiculo client:visible></ModalEliminarVehiculo>
             </div>
-
+            
         </body>
-        </html>
+    </html>
 </Layout>

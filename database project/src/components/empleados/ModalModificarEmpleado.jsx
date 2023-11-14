@@ -2,13 +2,11 @@ import React, {useEffect,useState} from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link} from "@nextui-org/react";
 
 import { Select, SelectItem } from "@nextui-org/react";
-import {animals} from "./data";
 
 
 
 
 export default function App() {
-
 
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [cedula, setCedula] = React.useState("");
@@ -23,12 +21,15 @@ export default function App() {
     setCedula(e.target.value);
     setNombre(e.target.nombre);
 
+    console.log(empleados)
+
     for (let i = 0; i < empleados.length; i++) {
       if (empleados[i].cedula == e.target.value) {
         setNombre(empleados[i].nombre.trim());
         setPrimerApellido(empleados[i].apellido1.trim());
         setSegundoApellido(empleados[i].apellido2.trim());
         setFechaNacimiento(empleados[i].fechaNacimiento.trim());
+
       }
     }
   };
