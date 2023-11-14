@@ -15,11 +15,11 @@ export default function TablaVehiculos() {
 
   const columns = [
     { key: "placa", label: "Placa" },
-    { key: "cedulaConductor", label: "Cedula del conductor" },
     { key: "capacidad", label: "Capacidad" },
     { key: "modelo", label: "Modelo" },
     { key: "marca", label: "Marca" },
-    { key: "annio", label: "Año" }
+    { key: "annio", label: "Año" },
+    { key: "cantidadViajes", label: "Cantidad de viajes" },
   ];
 
 

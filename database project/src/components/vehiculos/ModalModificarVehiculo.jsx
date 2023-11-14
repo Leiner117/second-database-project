@@ -10,11 +10,11 @@ export default function App() {
 
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [placa, setPlaca] = React.useState("");
-  const [cedulaConductor, setCedulaConductor] = React.useState("");
   const [capacidad, setCapacidad] = React.useState("");
   const [modelo, setModelo] = React.useState("");
   const [marca, setMarca] = React.useState("");
   const [annio, setAnnio] = React.useState("");
+  const [cantidadViajes, setCantidadViajes] = React.useState("");
   const [value, setValue] = React.useState("");
 
 
@@ -22,18 +22,17 @@ export default function App() {
   const handleSelectionChange = (e) => {
     setValue(e.target.value);
     setPlaca(e.target.value);
-    setCedulaConductor(e.target.cedulaConductor);
 
     console.log(vehiculos);
 
     for (let i = 0; i < vehiculos.length; i++) {
       if (vehiculos[i].placa == e.target.value) {
         console.log("Se encontro");
-        setCedulaConductor(vehiculos[i].cedulaConductor);
         setCapacidad(vehiculos[i].capacidad);
         setModelo(vehiculos[i].modelo);
         setMarca(vehiculos[i].marca);
         setAnnio(vehiculos[i].annio);
+        setCantidadViajes(vehiculos[i].cantidadViajes);
       }
     }
   };
@@ -59,7 +58,6 @@ export default function App() {
           datos: [
             {
               placa,
-              cedulaConductor,
               capacidad,
               modelo,
               marca,
@@ -115,7 +113,6 @@ export default function App() {
               </Select>
               </div>
 
-
               <Input
                   label="Placa"
                   placeholder="NO SE PUEDE MODIFICAR LA PLACA"
@@ -123,13 +120,6 @@ export default function App() {
                   value={placa}
                   onValueChange={setPlaca}
                   isDisabled
-                />
-                <Input
-                  label="Cedula del conductor"
-                  placeholder="Ej: 2-0842-0162"
-                  variant="bordered"
-                  value={cedulaConductor}
-                  onValueChange={setCedulaConductor}
                 />
                 <Input
                   label="Capacidad"
@@ -159,6 +149,16 @@ export default function App() {
                   value={annio}
                   onValueChange={setAnnio}
                 />
+                <Input
+                  label="Cantidad de viajes"
+                  placeholder="NO SE PUEDE MODIFICAR LA CANTIDAD DE VIAJES"
+                  variant="bordered"
+                  value={cantidadViajes}
+                  onValueChange={setCantidadViajes}
+                  OnlyRead
+                  isDisabled
+                />
+
                 <div className="flex py-2 px-1 justify-between">
                 </div>
               </ModalBody>

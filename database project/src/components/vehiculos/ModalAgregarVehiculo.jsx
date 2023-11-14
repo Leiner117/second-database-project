@@ -5,7 +5,6 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 export default function App() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [placa, setPlaca] = React.useState("");
-  const [cedulaConductor, setCedulaConductor] = React.useState("");
   const [capacidad, setCapacidad] = React.useState("");
   const [modelo, setModelo] = React.useState("");
   const [marca, setMarca] = React.useState("");
@@ -22,7 +21,6 @@ export default function App() {
           datos: [
             {
               placa,
-              cedulaConductor,
               capacidad,
               modelo,
               marca,
@@ -66,13 +64,6 @@ export default function App() {
                   variant="bordered"
                   value={placa}
                   onValueChange={setPlaca}
-                />
-                <Input
-                  label="Cedula del conductor"
-                  placeholder="Ej: 2-0842-0162"
-                  variant="bordered"
-                  value={cedulaConductor}
-                  onValueChange={setCedulaConductor}
                 />
                 <Input
                   label="Capacidad"

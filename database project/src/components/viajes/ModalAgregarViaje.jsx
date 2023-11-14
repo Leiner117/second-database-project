@@ -17,7 +17,22 @@ export default function App() {
   const [estado, setEstado] = React.useState("");
  
 
+
+
   const agregarViaje = async() => {
+
+    console.log(cedulaConductor);
+    console.log(placa);
+    console.log(nombreCliente);
+    console.log(fecha);
+    console.log(hora);
+    console.log(cantidadPasajeros);
+    console.log(lugarSalida);
+    console.log(lugarLlegada);
+    console.log(descripcion);
+    console.log(precio);
+    console.log(estado);
+
     try {
       const response = await fetch('http://localhost:5000/viajes', {
         method: 'POST',
@@ -48,9 +63,9 @@ export default function App() {
       }
   
       const data = await response.json();
-      console.log(data.mensaje); // Mensaje del servidor
-  
-      window.location.reload();
+
+
+      //window.location.reload();
   
     } catch (error) {
       console.error('Error:', error);
