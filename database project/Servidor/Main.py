@@ -7,7 +7,7 @@ CORS(app)
 # Configuración de la conexión a la base de datos SQL Server
 server = 'tcp:DESKTOP-7B25NAD'
 database = 'TransGaby'
-username = 'sa'
+username = 'noni'
 password = 'a123'
 conn_str = f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 conn = pyodbc.connect(conn_str)
@@ -175,17 +175,36 @@ def enviar_datos_viajes():
         except Exception as e:
             return jsonify({'error': str(e)})
 
-
+@app.route('/viajes', methods=['PUT'])
 def modificar_datos_viajes():
     with app.app_context():
         datos_nuevos = request.json.get('datos', [])
+        print(datos_nuevos)
         try:
-            cursor.execute("{CALL ActualizarViaje(? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )}", datos_nuevos[0]['idViaje'], 
-                        datos_nuevos[0]['cedulaConductor'], datos_nuevos[0]['placa'], datos_nuevos[0]['nombreCliente'], datos_nuevos[0]['fecha'], datos_nuevos[0]['hora'], datos_nuevos[0]['cantidadPasajeros'], datos_nuevos[0]['lugarSalida'], datos_nuevos[0]['lugarLlegada'], datos_nuevos[0]['descripcion'], datos_nuevos[0]['precio'], datos_nuevos[0]['estado'])
+            cursor.execute("{CALL ActualizarViaje(? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?, ? )}", 
+                        datos_nuevos[0]['idViaje'], 
+                        datos_nuevos[0]['cedulaConductor'], datos_nuevos[0]['placa'], 
+                        datos_nuevos[0]['nombreCliente'], datos_nuevos[0]['fecha'], 
+                        datos_nuevos[0]['hora'], datos_nuevos[0]['cantidadPasajeros'], 
+                        datos_nuevos[0]['lugarSalida'], datos_nuevos[0]['lugarLlegada'], 
+                        datos_nuevos[0]['descripcion'], datos_nuevos[0]['precio'], 
+                        datos_nuevos[0]['estado'])
             conn.commit()
             return jsonify({'mensaje': 'Datos enviados correctamente'})
         except Exception as e:
             return jsonify({'error': str(e)})
+
+@app.route('/viajes', methods=['DELETE'])
+def eliminar_datos_viajes():
+    with app.app_context():
+        datos_nuevos = request.json.get('datos', [])
+        try:
+            cursor.execute("{CALL EliminarViaje(?)}", datos_nuevos[0]['idViaje'])
+            conn.commit()
+            return jsonify({'mensaje': 'Datos enviados correctamente'})
+        except Exception as e:
+            return jsonify({'error': str(e)})
+        
 
 
 def testing():

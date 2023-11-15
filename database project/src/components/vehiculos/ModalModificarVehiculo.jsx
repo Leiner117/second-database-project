@@ -23,8 +23,8 @@ export default function App() {
     setValue(e.target.value);
     setPlaca(e.target.value);
 
-    console.log(vehiculos);
-
+  
+    
     for (let i = 0; i < vehiculos.length; i++) {
       if (vehiculos[i].placa == e.target.value) {
         console.log("Se encontro");

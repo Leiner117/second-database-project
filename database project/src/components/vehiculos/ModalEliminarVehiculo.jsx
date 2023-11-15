@@ -15,6 +15,7 @@ export default function App() {
   const [modelo, setModelo] = React.useState("");
   const [marca, setMarca] = React.useState("");
   const [annio, setAnnio] = React.useState("");
+  const [cantidadViajes, setCantidadViajes] = React.useState("");
   const [value, setValue] = React.useState("");
 
 
@@ -34,6 +35,7 @@ export default function App() {
         setModelo(vehiculos[i].modelo);
         setMarca(vehiculos[i].marca);
         setAnnio(vehiculos[i].annio);
+        setCantidadViajes(vehiculos[i].cantidadViajes);
       }
     }
   };
@@ -111,21 +113,12 @@ export default function App() {
               </Select>
               </div>
 
-
               <Input
                   label="Placa"
                   placeholder="Seleccione un vehiculo"
                   variant="bordered"
                   value={placa}
                   onValueChange={setPlaca}
-                  readOnly
-                />
-                <Input
-                  label="Cedula del conductor"
-                  placeholder="Seleccione un vehiculo"
-                  variant="bordered"
-                  value={cedulaConductor}
-                  onValueChange={setCedulaConductor}
                   readOnly
                 />
                 <Input
@@ -158,6 +151,14 @@ export default function App() {
                   variant="bordered"
                   value={annio}
                   onValueChange={setAnnio}
+                  readOnly
+                />
+                <Input
+                  label="Cantidad de viajes"
+                  placeholder="Seleccione un vehiculo"
+                  variant="bordered"
+                  value={cantidadViajes}
+                  onValueChange={setCantidadViajes}
                   readOnly
                 />
                 <div className="flex py-2 px-1 justify-between">

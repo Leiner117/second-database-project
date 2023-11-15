@@ -6,7 +6,8 @@ import Botones from '../components/Botones_viajes.astro';
 
 import TablaViajes from '../components/viajes/TablaViajes';
 import ModalAgregarViaje from '../components/viajes/ModalAgregarViaje';
-
+import ModalModificarViaje from '../components/viajes/ModalModificarViaje';
+import ModalEliminarViaje from '../components/viajes/ModalEliminarViaje';
 
 // Simulación de datos recuperados de una base de datos
 let viajes = [
@@ -35,6 +36,8 @@ let viajes = [
                     </main>
                     <div class = "flex gap-4">
                         <ModalAgregarViaje client:visible></ModalAgregarViaje>
+                        <ModalModificarViaje client:visible></ModalModificarViaje>
+                        <ModalEliminarViaje client:visible></ModalEliminarViaje>
                     </div>
                     
                 </main>
