@@ -3,16 +3,12 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 
 import { Select, SelectItem } from "@nextui-org/react";
 
-import axios from "axios";
+
 
 export default function App() {
-   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-   const [cedula, setCedula] = React.useState("");
-   const [correoInput, setCorreoInput] = React.useState("");
-
-    const [correo, setCorreo] = React.useState("");
-
-  
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [cedula, setCedula] = React.useState("");
+    const [correoInput, setCorreoInput] = React.useState("");
     const [value, setValue] = React.useState("");
 
 
@@ -25,6 +21,12 @@ export default function App() {
     const handleSelectionChange2 = (e) => {
       setValue(e.target.value);
       setCorreoInput(e.target.value);
+
+      for (let i = 0; i < correos.length; i++) {
+        if (correos[i].correo == e.target.value) {
+          setCedula(correos[i].cedula.trim());
+        }
+      }
     };
 
 
@@ -35,8 +37,9 @@ export default function App() {
 
   useEffect(() => {
     // Realiza la solicitud al servidor para obtener datos de la base de datos
-    axios.get("http://localhost:5000/empleados")
-      .then((response) => setEmpleados(response.data));
+    fetch("http://localhost:5000/empleados")
+      .then((response) => response.json())
+      .then((data) => setEmpleados(data.datos));
       
     fetch("http://localhost:5000/correos_empleados")
       .then((response) => response.json())
@@ -163,6 +166,7 @@ export default function App() {
                   value={correoInput}
                   onValueChange={setCorreoInput}
                 />
+                
                 <div className="flex py-2 px-1 justify-between">
                 </div>
               </ModalBody>
@@ -173,7 +177,7 @@ export default function App() {
                 <Button color="success" onPress={agregarCorreoEmpleado} onPressEnd={onClose}>
                   Agregar
                 </Button>
-                <Button color="error" onPress={eliminarCorreoEmpleado} onPressEnd={onClose}>
+                <Button color="danger" onPress={eliminarCorreoEmpleado} onPressEnd={onClose}>
                   Eliminar
                 </Button>
               </ModalFooter>

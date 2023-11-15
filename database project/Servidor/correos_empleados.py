@@ -46,7 +46,7 @@ def eliminar_correos_empleados():
         datos_nuevos = request.json.get('datos', [])
         print (datos_nuevos)
         try:
-            cursor.execute("{CALL EliminarCorreoElectronico(? , ?)}", datos_nuevos[0]['correo'], 
+            cursor.execute("{CALL EliminarCorreoElectronico(? , ?)}", datos_nuevos[0]['correoInput'], 
                         datos_nuevos[0]['cedula'])
             conn.commit()
             return jsonify({'mensaje': 'Datos enviados correctamente'})
