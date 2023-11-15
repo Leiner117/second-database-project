@@ -110,8 +110,7 @@ export default function App() {
                   variant="bordered"
                   value={telefono}
                   onValueChange={setTelefono}
-                />
-                
+                />   
                 <div className="flex py-2 px-1 justify-between">
                 </div>
               </ModalBody>

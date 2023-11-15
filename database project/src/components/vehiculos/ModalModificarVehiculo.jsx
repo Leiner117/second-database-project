@@ -27,7 +27,6 @@ export default function App() {
     
     for (let i = 0; i < vehiculos.length; i++) {
       if (vehiculos[i].placa == e.target.value) {
-        console.log("Se encontro");
         setCapacidad(vehiculos[i].capacidad);
         setModelo(vehiculos[i].modelo);
         setMarca(vehiculos[i].marca);

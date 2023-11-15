@@ -9,7 +9,6 @@ import { Select, SelectItem } from "@nextui-org/react";
 export default function App() {
 
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-
   const [idTransaccion, setIdTransaccion] = React.useState("");
   const [fecha, setFecha] = React.useState("");
   const [monto, setMonto] = React.useState("");
@@ -19,12 +18,12 @@ export default function App() {
 
 
   const handleSelectionChange = (e) => {
+
     setValue(e.target.value);
     setIdTransaccion(e.target.value);
   
     for (let i = 0; i < transacciones.length; i++) {
       if (transacciones[i].idTransaccion == e.target.value) {
-        setIdTransaccion(transacciones[i].idTransaccion);
         setFecha(transacciones[i].fecha);
         setMonto(transacciones[i].monto);
         setDetalle(transacciones[i].detalle);
@@ -102,7 +101,7 @@ export default function App() {
               >
                 {transacciones.map((transaccion) => (
                   <SelectItem key={transaccion.idTransaccion} value={transaccion}>
-                    {transaccion.idTransaccion}
+                    {transaccion.idTransaccion + " "}
                   </SelectItem>
                 ))}
               </Select>

@@ -45,8 +45,8 @@ def modificar_datos_empleados():
     with app.app_context():
         datos_nuevos = request.json.get('datos', [])
         try:
-            cursor.execute("{EXEC ActualizarEmpleado(? , ? , ? , ? )}", datos_nuevos[0]['cedula'], 
-                        datos_nuevos[0]['nombre'], datos_nuevos[0]['apellido1'], datos_nuevos[0]['apellido2'])   #, datos_nuevos[0]['fechaNacimiento'])
+            cursor.execute("{CALL ActualizarEmpleado(? , ? , ? , ?, ? )}", datos_nuevos[0]['cedula'], 
+                        datos_nuevos[0]['nombre'], datos_nuevos[0]['apellido1'], datos_nuevos[0]['apellido2'],datos_nuevos[0]['fechaNacimiento'])
             conn.commit()
             return jsonify({'mensaje': 'Datos enviados correctamente'})
         except Exception as e:

@@ -32,6 +32,7 @@ export default function App() {
 
       }
     }
+    
   };
 
   const [empleados, setEmpleados] = useState([]);
@@ -145,6 +146,18 @@ export default function App() {
                   variant="bordered"
                   value={fechaNacimiento}
                   onValueChange={setFechaNacimiento}
+                />
+                <Input
+                  label="Telefonos"
+                  placeholder="Ir a la seccion de telefonos para poder modificar"
+                  variant="bordered"
+                  isDisabled
+                />
+                <Input
+                  label="Correos"
+                  placeholder="Ir a la seccion de correos para poder modificar"
+                  variant="bordered"
+                  isDisabled
                 />
                 <div className="flex py-2 px-1 justify-between">
                 </div>

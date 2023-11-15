@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+
+import TablaClientes from '../components/clientes/TablaClientes';
+import ModalAgregarCliente from '../components/clientes/ModalAgregarCliente';
+import ModalModificarCliente from '../components/clientes/ModalModificarCliente';
+import ModalEliminarCliente from '../components/clientes/ModalEliminarCliente';
+
+---
+
+<Layout title="Pagina principal">
+    <html>
+        <head>
+            <title>Página con Sidebar</title>
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+        </head>
+        <body class="bg-gray-100">
+            <div class="flex flex-col">
+                <!-- Sidebar -->
+                <Sidebar />
+                <!-- Contenido principal -->
+                <main class="w-full p-4">
+                    <h1 class="text-2xl font-semibold">Clientes</h1>
+                    <TablaClientes client:visible></TablaClientes>
+            </div>
+            <div class = "flex gap-4">
+                <ModalAgregarCliente client:visible></ModalAgregarCliente>
+                <ModalModificarCliente client:visible></ModalModificarCliente>
+                <ModalEliminarCliente client:visible></ModalEliminarCliente>
+            </div>
+            
+        </body>
+
+        </html>
+</Layout>
