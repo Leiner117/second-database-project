@@ -11,20 +11,18 @@ correos_empleados = Blueprint('correos_empleados', __name__)
 
 @correos_empleados.route('/correos_empleados', methods=['GET'])
 def obtener_correos_empleados():
-    datos_nuevos = request.json.get('datos', [])
-    print(datos_nuevos)
     with app.app_context():
         # Ejemplo de consulta, ajusta según tu base de datos
-        try:
-            for dato in datos_nuevos:
-                query = 'EXEC LeerCorreoElectronico ?'
-                cursor.execute(query, dato['cedula'])
-                rows = cursor.fetchall()
-                datos = [{'correo': row.Correo, 'cedula' : row.CedulaEmpleado} for row in rows]
-            return jsonify({'datos': datos})
-        except Exception as e:
-            return jsonify({'error': str(e)})
-        
+        query = 'SELECT * FROM correoElectronicosEmpleados'
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        # Convertir resultados a un formato que Astro pueda entender
+        datos = [{'correo': row.Correo, 'cedula': row.CedulaEmpleado} for row in rows]
+        return jsonify({'datos': datos})
+
+
+
 @correos_empleados.route('/correos_empleados', methods=['POST'])
 def enviar_correos_empleados():
     with app.app_context():
@@ -35,8 +33,23 @@ def enviar_correos_empleados():
                 query = """
                     EXEC InsertarCorreoElectronico ?, ?
                 """
-                cursor.execute(query, dato['correo'],dato['cedula'])
+                cursor.execute(query, dato['correoInput'],dato['cedula'])
             conn.commit()
             return jsonify({'mensaje': 'Datos enviados correctamente'})
         except Exception as e:
             return jsonify({'error': str(e)})
+
+
+@correos_empleados.route('/correos_empleados', methods=['DELETE'])
+def eliminar_correos_empleados():
+    with app.app_context():
+        datos_nuevos = request.json.get('datos', [])
+        print (datos_nuevos)
+        try:
+            cursor.execute("{CALL EliminarCorreoElectronico(? , ?)}", datos_nuevos[0]['correo'], 
+                        datos_nuevos[0]['cedula'])
+            conn.commit()
+            return jsonify({'mensaje': 'Datos enviados correctamente'})
+        except Exception as e:
+            return jsonify({'error': str(e)})
+        

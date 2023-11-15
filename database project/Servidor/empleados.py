@@ -3,6 +3,8 @@ from bd import Bd
 cursor = Bd().cursor
 conn = Bd().conn
 empleados = Blueprint('empleados', __name__)
+
+
 """EMPLEADOS"""
 # Ruta para obtener datos de la base de datos
 @empleados.route('/empleados', methods=['GET'])

@@ -5,7 +5,7 @@ from empleados import empleados
 from viajes import viajes
 from vehiculos import vehiculo
 from transacciones import transacciones
-from correosEmpleados import correos_empleados
+from correos_empleados import correos_empleados
 
 app = Flask(__name__)
 CORS(app)
