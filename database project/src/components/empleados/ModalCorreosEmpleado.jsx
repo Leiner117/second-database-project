@@ -3,6 +3,8 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 
 import { Select, SelectItem } from "@nextui-org/react";
 
+import axios from "axios";
+
 export default function App() {
    const {isOpen, onOpen, onOpenChange} = useDisclosure();
    const [cedula, setCedula] = React.useState("");
@@ -33,9 +35,8 @@ export default function App() {
 
   useEffect(() => {
     // Realiza la solicitud al servidor para obtener datos de la base de datos
-    fetch("http://localhost:5000/empleados")
-      .then((response) => response.json())
-      .then((data) => setEmpleados(data.datos));
+    axios.get("http://localhost:5000/empleados")
+      .then((response) => setEmpleados(response.data));
       
     fetch("http://localhost:5000/correos_empleados")
       .then((response) => response.json())
