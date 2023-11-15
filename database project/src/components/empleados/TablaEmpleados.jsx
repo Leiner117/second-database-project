@@ -19,8 +19,6 @@ export default function TablaEmpleados() {
     { key: "apellido1", label: "Primer apellido" },
     { key: "apellido2", label: "Segundo apellido" },
     { key: "fechaNacimiento", label: "Fecha de nacimiento" },
-    { key: "correo", label: "Correo" },
-    { key: "telefono", label: "Telefono" },
   ];
 
 

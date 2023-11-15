@@ -8,23 +8,23 @@ import { Select, SelectItem } from "@nextui-org/react";
 export default function App() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [cedula, setCedula] = React.useState("");
-    const [correoInput, setCorreoInput] = React.useState("");
+    const [telefonoInput, setTelefonoInput] = React.useState("");
     const [value, setValue] = React.useState("");
 
 
     const handleSelectionChange = (e) => {
         setValue(e.target.value);
         setCedula(e.target.value);
-        setCorreoInput("");
+        setTelefonoInput("");
     };
 
     const handleSelectionChange2 = (e) => {
       setValue(e.target.value);
-      setCorreoInput(e.target.value);
+      setTelefonoInput(e.target.value);
 
-      for (let i = 0; i < correos.length; i++) {
-        if (correos[i].correo == e.target.value) {
-          setCedula(correos[i].cedula.trim());
+      for (let i = 0; i < telefonos.length; i++) {
+        if (telefonos[i].telefono == e.target.value) {
+          setCedula(telefonos[i].cedula.trim());
         }
       }
     };
@@ -33,7 +33,7 @@ export default function App() {
 
     const [empleados, setEmpleados] = useState([]);
 
-    const [correos, setCorreos] = useState([]);
+    const [telefonos, setTelefonos] = useState([]);
 
   useEffect(() => {
     // Realiza la solicitud al servidor para obtener datos de la base de datos
@@ -41,16 +41,16 @@ export default function App() {
       .then((response) => response.json())
       .then((data) => setEmpleados(data.datos));
       
-    fetch("http://localhost:5000/correos_empleados")
+    fetch("http://localhost:5000/telefonos_empleados")
       .then((response) => response.json())
-      .then((data) => setCorreos(data.datos));
+      .then((data) => setTelefonos(data.datos));
       // Ajusta según la estructura de tu respuesta del servidor
   }, []);
 
 
-  const agregarCorreoEmpleado = async() => {
+  const agregarNumeroEmpleado = async() => {
     try {
-      const response = await fetch("http://localhost:5000/correos_empleados", {
+      const response = await fetch("http://localhost:5000/telefonos_empleados", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export default function App() {
         body: JSON.stringify({
           datos: [
             {
-              correoInput,
+              telefonoInput,
               cedula,
             },
           ],
@@ -81,9 +81,9 @@ export default function App() {
   };
 
 
-  const eliminarCorreoEmpleado = async() => {
+  const eliminarNumeroEmpleado = async() => {
     try {
-      const response = await fetch("http://localhost:5000/correos_empleados", {
+      const response = await fetch("http://localhost:5000/telefonos_empleados", {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export default function App() {
         body: JSON.stringify({
           datos: [
             {
-              correoInput,
+              telefonoInput,
               cedula,
             },
           ],
@@ -115,7 +115,7 @@ export default function App() {
 
   return (
     <>
-      <Button onPress={onOpen} color="success"> Correos</Button>
+      <Button onPress={onOpen} color="secondary"> Telefonos</Button>
       <Modal 
         isOpen={isOpen} 
         onOpenChange={onOpenChange}
@@ -126,7 +126,7 @@ export default function App() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Correos</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Telefonos</ModalHeader>
               <ModalBody>
 
                 <div className="flex w-full  flex-row gap-2">
@@ -145,28 +145,28 @@ export default function App() {
                     </Select>
 
                     <Select
-                    label="Correos"
+                    label="Telefonos"
                     variant="bordered"
                     selectedKeys={[value]}
                     size = "lg"
                     className="max-w-xs"
                     onChange={handleSelectionChange2}
                     >
-                    {correos.map((correo) => (
-                        <SelectItem key={correo.correo} value={correo}>
-                        {correo.correo + " "}
+                    {telefonos.map((telefono) => (
+                        <SelectItem key={telefono.telefono} value={telefono}>
+                        {telefono.telefono + " "}
                         </SelectItem>
                     ))}
                     </Select>
                 </div>
                 <Input
-                  label="Correo"
-                  placeholder="Ej: correo@hotmail.com"
+                  label="Telefono"
+                  placeholder="Ej: 62163336"
                   variant="bordered"
-                  value={correoInput}
-                  onValueChange={setCorreoInput}
+                  value={telefonoInput}
+                  onValueChange={setTelefonoInput}
                 />
-                
+
                 <div className="flex py-2 px-1 justify-between">
                 </div>
               </ModalBody>
@@ -174,10 +174,10 @@ export default function App() {
                 <Button color="danger" variant="flat" onPress={onClose}>
                   Cerrar
                 </Button>
-                <Button color="success" onPress={agregarCorreoEmpleado} onPressEnd={onClose}>
+                <Button color="secondary" onPress={agregarNumeroEmpleado} onPressEnd={onClose}>
                   Agregar
                 </Button>
-                <Button color="danger" onPress={eliminarCorreoEmpleado} onPressEnd={onClose}>
+                <Button color="danger" onPress={eliminarNumeroEmpleado} onPressEnd={onClose}>
                   Eliminar
                 </Button>
               </ModalFooter>
