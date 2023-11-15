@@ -3,19 +3,23 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKey
 
 
 
-export default function TablaClientes() {
-  const [clientes, setClientes] = useState([]);
+export default function TablaInforme() {
+  const [informe, setInforme] = useState([]);
 
   useEffect(() => {
     // Realiza la solicitud al servidor para obtener datos de la base de datos
-    fetch("http://localhost:5000/clientes")
+    fetch("http://localhost:5000/informeFinanciero")
       .then((response) => response.json())
-      .then((data) => setClientes(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
+      .then((data) => setInforme(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
   }, []); // El segundo argumento [] asegura que el efecto se ejecute solo una vez, equivalente a componentDidMount en clases.
 
   const columns = [
-    { key: "Nombre", label: "Nombre" },
-    { key: "CantidadViajes", label: "Cantidad de viajes" }
+    { key: "FechaInicio", label: "Fecha Inicio" },
+    { key: "FechaFin", label: "Fecha Finalizacion" },
+    { key: "ViajesTotales", label: "Viajes Totales" },
+    { key: "GastosTotales", label: "Gastos Totales" },
+    { key: "PagosTotales", label: "Pagos Totales" },
+    { key: "GananciaTotal", label: "Ganancia Total" }
   ];
 
 
@@ -28,9 +32,9 @@ export default function TablaClientes() {
       <TableHeader columns={columns}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
-      <TableBody items={clientes}>
+      <TableBody items={informe}>
         {(item) => (
-          <TableRow key={item.Nombre}>
+          <TableRow key={item.FechaInicio}>
             {(columnKey) => (
               <TableCell>{getKeyValue(item, columnKey)}</TableCell>
             )}

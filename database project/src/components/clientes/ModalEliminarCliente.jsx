@@ -41,10 +41,10 @@ export default function App() {
   }, []);
 
 
-  const modificarCliente = async() => {
+  const eliminarCliente = async() => {
     try {
       const response = await fetch('http://localhost:5000/clientes', {
-        method: 'PUT',
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -75,7 +75,7 @@ export default function App() {
 
   return (
     <>
-      <Button onPress={onOpen} color="warning">Modificar Clientes</Button>
+      <Button onPress={onOpen} color="danger">Eliminar Clientes</Button>
       <Modal 
         isOpen={isOpen} 
         onOpenChange={onOpenChange}
@@ -85,12 +85,12 @@ export default function App() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modificar Cliente</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Eliminar Cliente</ModalHeader>
               <ModalBody>
 
               <div className="flex w-full max-w-xs flex-col gap-2">
               <Select
-                label="Cliente a Modificar"
+                label="Cliente a Eliminar"
                 variant="bordered"
                 selectedKeys={[value]}
                 className="max-w-xs"
@@ -106,7 +106,7 @@ export default function App() {
 
               <Input
                   label="Nombre"
-                  placeholder="NO SE PUEDE MODIFICAR EL NOMBRE"
+                  placeholder="Seleccione un nombre"
                   variant="bordered"
                   value={nombre}
                   onValueChange={setNombre}
@@ -120,8 +120,8 @@ export default function App() {
                 <Button color="danger" variant="flat" onPress={onClose}>
                   Cerrar
                 </Button>
-                <Button color="warning" onPressStart={modificarCliente} onPressEnd={onClose} isDisabled>
-                  Modificar
+                <Button color="danger" onPressStart={eliminarCliente} onPressEnd={onClose}>
+                  Eliminar
                 </Button>
               </ModalFooter>
             </>

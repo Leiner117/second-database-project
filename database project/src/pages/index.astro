@@ -2,7 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Sidebar from '../components/Sidebar.astro';
-
+import TablaInforme from '../components/inicio/tableInformeFinancieroGlobal';
+import TablaInformeCliente from '../components/inicio/tableInformeFinancieroCliente';
 ---
 
 <Layout title="Pagina principal">
@@ -17,8 +18,17 @@ import Sidebar from '../components/Sidebar.astro';
                 <Sidebar />
                 <!-- Contenido principal -->
                 <main class="w-full p-4">
-                    <h1 class="text-2xl font-semibold">Contenido Principal</h1>
-                    <p class=>Leiner no para de bretear</p>
+                    <h1 class="text-2xl font-semibold">Informe Financiero Anual</h1>
+                    <!-- Espacio -->
+                    <div class="h-4"></div>
+                    <TablaInforme client:visible></TablaInforme>
+                    <div class="h-4"></div>
+                    <h1 class="text-2xl font-semibold">Informe Financiero por clientes</h1>
+                    <!-- Espacio -->
+                    <div class="h-4"></div>
+                    <TablaInformeCliente client:visible></TablaInformeCliente>
+
+                    
                 </main>
             </div>
         </body>
