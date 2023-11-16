@@ -28,6 +28,7 @@ def obtener_datos_viajes():
 def enviar_datos_viajes():
     with app.app_context():
         datos_nuevos = request.json.get('datos', [])
+        print(datos_nuevos)
         try:
             # Ejemplo de llamada a procedimiento almacenado, ajusta según tu base de datos
             for dato in datos_nuevos:
@@ -35,7 +36,7 @@ def enviar_datos_viajes():
                     EXEC RegistrarViaje ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                 """
 
-                
+
 
                 cursor.execute(query, (dato['cedulaConductor'],dato['placa'], dato['nombreCliente'], dato['fecha'],
                                         dato['hora'],dato['cantidadPasajeros'], dato['lugarSalida'], dato['lugarLlegada']

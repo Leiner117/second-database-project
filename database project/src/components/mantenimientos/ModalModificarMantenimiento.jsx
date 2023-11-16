@@ -30,14 +30,14 @@ export default function App() {
         }
       };
 
-    const [mantenimientos, setMantenimientos] = useState([]);
+        const [mantenimientos, setMantenimientos] = useState([]);
 
-    useEffect(() => {
-        // Realiza la solicitud al servidor para obtener datos de la base de datos
-        fetch("http://localhost:5000/mantenimientos")
-          .then((response) => response.json())
-          .then((data) => setMantenimientos(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
-      }, []);
+        useEffect(() => {
+            // Realiza la solicitud al servidor para obtener datos de la base de datos
+            fetch("http://localhost:5000/mantenimientos")
+            .then((response) => response.json())
+            .then((data) => setMantenimientos(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
+        }, []);
 
 
 

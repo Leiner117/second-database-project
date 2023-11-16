@@ -14,14 +14,10 @@ from telefonos_empleados import telefonos_empleados
 from correos_clientes import correos_clientes
 from telefonos_clientes import telefonos_clientes
 from mantenimientos import mantenimientos
+from consultas import consultas
 
 app = Flask(__name__)
-<<<<<<< HEAD
 CORS(app, resources={r"/*": {"origins": "http://localhost:4321"}})
-=======
-CORS(app)
-
->>>>>>> ce57fc842d06072546d1f31674ee96bb9be2d0a3
 app.register_blueprint(empleados)
 app.register_blueprint(viajes)
 app.register_blueprint(vehiculo)
@@ -34,6 +30,7 @@ app.register_blueprint(telefonos_empleados)
 app.register_blueprint(correos_clientes)
 app.register_blueprint(telefonos_clientes)
 app.register_blueprint(mantenimientos)
+app.register_blueprint(consultas)
 
 
 # Configuración del cliente Astro
