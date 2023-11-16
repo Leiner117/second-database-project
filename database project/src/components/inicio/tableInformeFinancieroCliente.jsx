@@ -17,8 +17,8 @@ export default function TablaInformeCliente() {
     { key: "FechaInicio", label: "Fecha Inicio" },
     { key: "FechaFin", label: "Fecha Finalizacion" },
     { key: "ViajesTotales", label: "Viajes Totales" },
-    {key: "NombreCliente", label: "Nombre Cliente"},
-    { key: "PagosTotales", label: "Pagos Totales" },
+    {key:"NombreCliente", label:"Nombre Cliente"},
+    { key: "PagosTotales", label: "Pagos Totales" }
   ];
 
 

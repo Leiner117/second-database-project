@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import pyodbc
 from flask_cors import CORS
+
 from empleados import empleados
 from viajes import viajes
 from vehiculos import vehiculo
@@ -13,7 +14,7 @@ from telefonos_empleados import telefonos_empleados
 
 app = Flask(__name__)
 CORS(app)
-CORS(app, resources={r"/*": {"origins": "http://localhost:4321"}})
+
 app.register_blueprint(empleados)
 app.register_blueprint(viajes)
 app.register_blueprint(vehiculo)
@@ -84,5 +85,4 @@ def testing4():
 
 
 if __name__ == '__main__':
-    
     app.run(debug=True)

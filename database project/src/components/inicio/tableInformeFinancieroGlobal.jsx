@@ -8,7 +8,10 @@ export default function TablaInforme() {
 
   useEffect(() => {
     // Realiza la solicitud al servidor para obtener datos de la base de datos
-    fetch("http://localhost:5000/informeFinanciero")
+    fetch("http://localhost:5000/informeFinanciero", {
+        method: "GET",
+        mode: "cors",
+        })
       .then((response) => response.json())
       .then((data) => setInforme(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
   }, []); // El segundo argumento [] asegura que el efecto se ejecute solo una vez, equivalente a componentDidMount en clases.
