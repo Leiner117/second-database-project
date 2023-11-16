@@ -5,7 +5,7 @@ conn = Bd().conn
 informeCliente = Blueprint('informeCliente', __name__)
 
 @informeCliente.route('/informeFinancieroCliente', methods=['GET'])
-def obtener_datos_informe():
+def obtener_datos_informe_cliente():
     with app.app_context():
         # Ejemplo de consulta, ajusta según tu base de datos
         query = 'SELECT * FROM VistaInformeFinancieroCliente'
