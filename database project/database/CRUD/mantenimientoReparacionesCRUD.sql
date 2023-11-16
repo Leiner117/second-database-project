@@ -41,3 +41,6 @@ BEGIN
     DELETE FROM mantenimientoReparaciones WHERE idMantenimiento = @idMantenimiento;
 END;
 --#####################################################
+
+select * from mantenimientoReparaciones
+exec ActualizarMantenimientoReparaciones 1, '2023-01-01', 'Cambio de llanta', 100, 'ABC-777'

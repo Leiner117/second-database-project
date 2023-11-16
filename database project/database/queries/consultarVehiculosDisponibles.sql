@@ -16,3 +16,5 @@ BEGIN
         OR VT.Vehiculo IS NULL;
 END;
 
+
+

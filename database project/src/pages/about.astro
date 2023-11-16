@@ -1,13 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-
+import Sidebar from '../components/Sidebar.astro';
+import App from '../components/about/cardAbout';
 ---
 
 <Layout title="Pagina principal">
-	
-    <h1>
-        Proyecto Realizado por
-    </h1>
-    <h1 class="text-green-400"> Noni, Jeison y Leiner</h1>
-</Layout>
+    <html>
+        <head>
+            <title>Página con Sidebar</title>
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+        </head>
+        <body class="bg-gray-100">
+            <div class="flex flex-col">
+                <!-- Sidebar -->
+                <Sidebar />
+                <!-- Contenido principal -->
+                <main class="w-full p-4">
+                    <h1 class="text-2xl font-semibold flex justify-center">Proyecto de Bases de Datos</h1>
+                    <div class="h-5"></div>
+                    <h1 class="text-2xl font-semibold flex justify-center">Realizado por </h1>
+                    <div class="h-6"></div>
+                    <App client:visible/>
+
+                    
+                </main>
+            </div>
+        </body>
+        </html>
+</Layout>../components/about/cardAbout
