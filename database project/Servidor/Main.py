@@ -6,7 +6,7 @@ from viajes import viajes
 from vehiculos import vehiculo
 from transacciones import transacciones
 from correosEmpleados import correos_empleados
-
+from clientes import clientes
 app = Flask(__name__)
 CORS(app)
 app.register_blueprint(empleados)
@@ -14,6 +14,7 @@ app.register_blueprint(viajes)
 app.register_blueprint(vehiculo)
 app.register_blueprint(transacciones)
 app.register_blueprint(correos_empleados)
+app.register_blueprint(clientes)
 
 # Configuración del cliente Astro
 
