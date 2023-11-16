@@ -27,7 +27,7 @@ def obtener_datos_vehiculos():
 def enviar_datos_vehiculos():
     with app.app_context():
         datos_nuevos = request.json.get('datos', [])
-        print(datos_nuevos)
+        
         try:
             # Ejemplo de inserción, ajusta según tu base de datos
             for dato in datos_nuevos:

@@ -16,7 +16,6 @@ def obtener_datos_clientes():
 
         # Convertir resultados a un formato que Astro pueda entender
         datos = [{'Nombre':row.Nombre,'CantidadViajes':row.CantidadViajes,'CantidadTransacciones':row.CantidadTransacciones} for row in rows]
-        print(datos)
         return jsonify({'datos': datos})
 
 # Ruta para enviar datos a la base de datos
@@ -24,7 +23,6 @@ def obtener_datos_clientes():
 def enviar_datos_clientes():
     with app.app_context():
         datos_nuevos = request.json.get('datos', [])
-        print(datos_nuevos)
         try:
             # Ejemplo de inserción, ajusta según tu base de datos
             for dato in datos_nuevos:

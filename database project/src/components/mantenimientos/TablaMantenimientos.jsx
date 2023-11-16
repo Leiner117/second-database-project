@@ -4,22 +4,23 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKey
 
 
 export default function TablaClientes() {
-  const [clientes, setClientes] = useState([]);
+  const [mantenimientos, setMantenimientos] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       // Realiza la solicitud al servidor para obtener datos de la base de datos
-      const response = await fetch("http://localhost:5000/clientes");
+      const response = await fetch("http://localhost:5000/mantenimientos");
       const data = await response.json();
-      setClientes(data.datos); // Ajusta según la estructura de tu respuesta del servidor
+      setMantenimientos(data.datos); // Ajusta según la estructura de tu respuesta del servidor
     };
-  
     fetchData();
   }, []);
 
   const columns = [
-    { key: "Nombre", label: "Nombre" },
-    { key: "CantidadViajes", label: "Cantidad de viajes" }
+    { key: "costo", label: "Costo" },
+    { key: "descripcion", label: "Descripcion" },
+    { key: "fecha", label: "Fecha"},
+    { key: "placa", label: "Placa" },
   ];
 
 
@@ -27,12 +28,12 @@ export default function TablaClientes() {
     <Table
       aria-label="Example table with dynamic content"
       selectionMode="single"
-      color={"primary"}
+      color={"secondary"}
     >
       <TableHeader columns={columns}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
-      <TableBody items={clientes}>
+      <TableBody items={mantenimientos}>
         {(item) => (
           <TableRow key={item.Nombre}>
             {(columnKey) => (

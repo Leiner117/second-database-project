@@ -72,7 +72,7 @@ export default function App() {
       const data = await response.json();
       console.log(data.mensaje); // Mensaje del servidor
   
-      //window.location.reload();
+      window.location.reload();
   
     } catch (error) {
       console.error('Error:', error);
@@ -105,7 +105,7 @@ export default function App() {
       const data = await response.json();
       console.log(data.mensaje); // Mensaje del servidor
   
-      //window.location.reload();
+      window.location.reload();
   
     } catch (error) {
       console.error('Error:', error);

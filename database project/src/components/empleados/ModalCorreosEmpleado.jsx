@@ -4,7 +4,6 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 import { Select, SelectItem } from "@nextui-org/react";
 
 
-
 export default function App() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [cedula, setCedula] = React.useState("");
@@ -72,7 +71,7 @@ export default function App() {
       const data = await response.json();
       console.log(data.mensaje); // Mensaje del servidor
   
-      //window.location.reload();
+      window.location.reload();
   
     } catch (error) {
       console.error('Error:', error);
@@ -105,7 +104,7 @@ export default function App() {
       const data = await response.json();
       console.log(data.mensaje); // Mensaje del servidor
   
-      //window.location.reload();
+      window.location.reload();
   
     } catch (error) {
       console.error('Error:', error);

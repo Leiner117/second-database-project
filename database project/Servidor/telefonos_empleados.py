@@ -38,7 +38,6 @@ def enviar_telefonos_empleados():
 def eliminar_telefonos_empleados():
     with app.app_context():
         datos_nuevos = request.json.get('datos', [])
-        print (datos_nuevos)
         try:
             cursor.execute("{CALL EliminarTelefono(? , ?)}", datos_nuevos[0]['telefonoInput'], 
                         datos_nuevos[0]['cedula'])

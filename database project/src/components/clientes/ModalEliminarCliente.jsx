@@ -34,10 +34,14 @@ export default function App() {
   const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
-    // Realiza la solicitud al servidor para obtener datos de la base de datos
-    fetch("http://localhost:5000/clientes")
-      .then((response) => response.json())
-      .then((data) => setClientes(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
+    const fetchData = async () => {
+      // Realiza la solicitud al servidor para obtener datos de la base de datos
+      const response = await fetch("http://localhost:5000/clientes");
+      const data = await response.json();
+      setClientes(data.datos); // Ajusta según la estructura de tu respuesta del servidor
+    };
+  
+    fetchData();
   }, []);
 
 

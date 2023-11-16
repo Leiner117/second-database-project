@@ -34,6 +34,9 @@ def enviar_datos_viajes():
                 query = """
                     EXEC RegistrarViaje ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                 """
+
+                
+
                 cursor.execute(query, (dato['cedulaConductor'],dato['placa'], dato['nombreCliente'], dato['fecha'],
                                         dato['hora'],dato['cantidadPasajeros'], dato['lugarSalida'], dato['lugarLlegada']
                                        ,dato['descripcion'], dato['precio'], dato['estado']))
@@ -46,7 +49,6 @@ def enviar_datos_viajes():
 def modificar_datos_viajes():
     with app.app_context():
         datos_nuevos = request.json.get('datos', [])
-        print(datos_nuevos)
         try:
             cursor.execute("{CALL ActualizarViaje(? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?, ? )}", 
                         datos_nuevos[0]['idViaje'], 
