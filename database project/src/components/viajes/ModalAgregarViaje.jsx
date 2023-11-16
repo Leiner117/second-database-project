@@ -5,73 +5,101 @@ import { Select, SelectItem } from "@nextui-org/react";
 
 
 export default function App() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const [cedulaConductor, setCedulaConductor] = React.useState("");
-  const [placa, setPlaca] = React.useState("");
-  const [nombreCliente, setNombreCliente] = React.useState("");
-  const [fecha, setFecha] = React.useState("");
-  const [hora, setHora] = React.useState("");
-  const [cantidadPasajeros, setCantidadPasajeros] = React.useState("");
-  const [lugarSalida, setlugarSalida] = React.useState("");
-  const [lugarLlegada, setLugarLlegada] = React.useState("");
-  const [descripcion, setDescripcion] = React.useState("");
-  const [precio, setPrecio] = React.useState("");
-  const [estado, setEstado] = React.useState("");
- 
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [cedulaConductor, setCedulaConductor] = React.useState("");
+    const [placa, setPlaca] = React.useState("");
+    const [nombreCliente, setNombreCliente] = React.useState("");
+    const [fecha, setFecha] = React.useState("");
+    const [hora, setHora] = React.useState("");
+    const [cantidadPasajeros, setCantidadPasajeros] = React.useState("");
+    const [lugarSalida, setlugarSalida] = React.useState("");
+    const [lugarLlegada, setLugarLlegada] = React.useState("");
+    const [descripcion, setDescripcion] = React.useState("");
+    const [precio, setPrecio] = React.useState("");
+    const [estado, setEstado] = React.useState("");
 
-  const agregarViaje = async() => {
+    const [value, setValue] = React.useState("");
 
-    console.log(cedulaConductor);
-    console.log(placa);
-    console.log(nombreCliente);
-    console.log(fecha);
-    console.log(hora);
-    console.log(cantidadPasajeros);
-    console.log(lugarSalida);
-    console.log(lugarLlegada);
-    console.log(descripcion);
-    console.log(precio);
-    console.log(estado);
+    const [conductoresDisponibles, setConductoresDisponibles] = useState([]);
+        useEffect(() => {
+            // Realiza la solicitud al servidor para obtener datos de la base de datos
+            fetch("http://localhost:5000/consultas")
+            .then((response) => response.json())
+            .then((data) => setConductoresDisponibles(data.datos)); // Ajusta según la estructura de tu respuesta del servidor
+        }, []);
 
-    try {
-      const response = await fetch('http://localhost:5000/viajes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          datos: [
-            {
-                cedulaConductor,
-                placa,
-                nombreCliente,
-                fecha,
-                hora,
-                cantidadPasajeros,
-                lugarSalida,
-                lugarLlegada,
-                descripcion,
-                precio,
-                estado,
-            },
-          ],
-        }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Error al enviar datos al servidor');
+
+
+    const handleSelectionChange = (e) => {
+      setValue(e.target.value);
+
+      setCedulaConductor(e.target.value);
+
+
+      for (let i = 0; i < conductoresDisponibles.length; i++) {
+        if (conductoresDisponibles[i].id == e.target.value) {
+          setId(conductoresDisponibles[i].cedulaConductor);
+          setCedulaConductor(conductoresDisponibles[i].cedulaConductor);
+        }
       }
-  
-      const data = await response.json();
+    };
+
+    
+    
+
+    const agregarViaje = async() => {
+
+      console.log(cedulaConductor);
+      console.log(placa);
+      console.log(nombreCliente);
+      console.log(fecha);
+      console.log(hora);
+      console.log(cantidadPasajeros);
+      console.log(lugarSalida);
+      console.log(lugarLlegada);
+      console.log(descripcion);
+      console.log(precio);
+      console.log(estado);
+
+      try {
+        const response = await fetch('http://localhost:5000/viajes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            datos: [
+              {
+                  cedulaConductor,
+                  placa,
+                  nombreCliente,
+                  fecha,
+                  hora,
+                  cantidadPasajeros,
+                  lugarSalida,
+                  lugarLlegada,
+                  descripcion,
+                  precio,
+                  estado,
+              },
+            ],
+          }),
+        });
+    
+        if (!response.ok) {
+          throw new Error('Error al enviar datos al servidor');
+        }
+    
+        const data = await response.json();
 
 
-      window.location.reload();
-  
-    } catch (error) {
-      console.error('Error:', error);
-      // Puedes manejar el error según tus necesidades, por ejemplo, mostrar un mensaje al usuario.
-    }
-  };
+        window.location.reload();
+    
+      } catch (error) {
+        console.error('Error:', error);
+        // Puedes manejar el error según tus necesidades, por ejemplo, mostrar un mensaje al usuario.
+      }
+    };
   return (
     <>
       <Button onPress={onOpen} color="primary">Agregar viaje</Button>
@@ -86,13 +114,19 @@ export default function App() {
             <>
               <ModalHeader className="flex flex-col gap-1">Agregar viaje</ModalHeader>
               <ModalBody>
-                <Input
-                  label="Cedula del conductor"
-                  placeholder="Ej: 2-0842-0162"
-                  variant="bordered"
-                  value={cedulaConductor}
-                  onValueChange={setCedulaConductor}
-                />
+                <Select
+                label="Vehiculo a modificar"
+                variant="bordered"
+                selectedKeys={[value]}
+                className="max-w-xs"
+                onChange={handleSelectionChange}
+                >
+                {conductoresDisponibles.map((conductor) => (
+                  <SelectItem key={conductor.cedulaConductor} value={conductor}>
+                    {conductor.cedulaConductor + " " + conductor.nombreConductor}
+                  </SelectItem>
+                ))}
+              </Select>
                 <Input
                   label="Placa"
                   placeholder="Ej: AB323"
